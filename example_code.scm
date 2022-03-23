@@ -71,3 +71,75 @@
                        (conj
                         (== 'pea y)
                         (== `(,x ,y) r))))))
+
+; 1-82
+(run* x
+        (teacupo x))
+
+; 1-86
+(run* (x y)
+       (teacupo x)
+       (teacupo x))
+
+; 1-88
+(run* (x y)
+        (disj
+         (conj (== 'split x) (== 'pea y))
+         (conj (== 'red x) (== 'bean y))))
+
+(run* (x y)
+        (conde
+         ((== 'split x) (== 'pea y))
+         ((== 'red x) (== 'bean y))))
+
+; 1-91
+(run* (x y)
+        (conde
+         ((== 'split x) (== 'pea y))
+         ((== 'red x) (== 'bean y))
+         ((== 'green x) (== 'lentil y))))
+
+; 2-4
+(run* x
+        (caro '(a c o r n) 'a))
+
+; 2-8
+(run* r
+        (fresh (x y)
+               (caro '(grape raisin pear) x)
+               (caro '((a) (b) (c)) y)
+               (== (cons x y) r)))
+
+; 2-16
+(run* q
+        (cdro '(a c o r n) '(c o r n)))
+
+; 2-22
+(run* x
+        (conso x `(a ,x c) `(d a ,x c)))
+
+(run* x
+        (conso-2nd x `(a ,x c) `(d a ,x c)))
+
+; 2-27
+(run* l
+        (fresh (d t x y w)
+               (conso w '(n u s) t)
+               (cdro l t)
+               (caro l x)
+               (== 'b x)
+               (cdro l d)
+               (caro d x)
+               (== 'o y)))
+
+; 2-32
+(run* x
+        (nullo x))
+
+; 2-50
+(run* q
+        (pairo q))
+
+; 2-52
+(run* r
+        (pairo (cons r '())))
