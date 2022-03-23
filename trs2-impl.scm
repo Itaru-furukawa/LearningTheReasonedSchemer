@@ -232,5 +232,48 @@
      (conda ((once g0) g ...) ...))))
 
 ;;; Here are the simple difinitions of chapter 1
+
 (defrel (teacupo t)
   (disj (== 'tea t) (== 'cup t)))
+
+;;; Here are the simple difinitions of chapter 2
+
+(defrel (caro p a)
+  (fresh (d)
+         (== (cons a d) p)))
+
+(defrel (cdro p d)
+  (fresh (a)
+         (== (cons a d) p)))
+
+(defrel (conso a d p)
+  (caro p a)
+  (cdro p d))
+
+(defrel (conso-2nd a d p)
+  (== `(,a . ,d) p))
+
+(defrel (nullo x)
+  (== '() x))
+
+(defrel (pairo p)
+  (fresh (a d)
+         (conso a d p)))
+
+(define (singleton? l)
+  (cond
+    ((pair? l) (null? (cdr l)))
+    (else #f)))
+
+(defrel (singletono l)
+  (conde
+   ((pairo l)
+    (fresh (d)
+           (cdro l d)
+           (nullo d)))
+    (succeed fail)))
+
+(defrel (singletono-2nd l)
+  (fresh (d)
+         (cdro l d)
+         (nullo d)))
