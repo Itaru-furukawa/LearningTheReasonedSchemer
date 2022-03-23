@@ -230,3 +230,7 @@
   (syntax-rules ()
     ((condu (g0 g ...) ...)
      (conda ((once g0) g ...) ...))))
+
+;;; Here are the simple difinitions of chapter 1
+(defrel (teacupo t)
+  (disj (== 'tea t) (== 'cup t)))
