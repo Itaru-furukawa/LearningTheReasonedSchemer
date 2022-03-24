@@ -143,3 +143,57 @@
 ; 2-52
 (run* r
         (pairo (cons r '())))
+
+; 3-12
+(run* x
+        (listo `(a b ,x d)))
+
+; 3-23
+(run* q
+        (fresh (x y)
+               (lolo `((a b) (,x c) (d ,y)))))
+
+; 3-24
+(run 1 l
+       (lolo l))
+
+; 3-27
+(run* x
+        (lolo `((a b) (c d) . ,x)))
+
+; (3-32)
+(run* q
+        (singletono '(a)))
+
+(run* q
+       (singletono-3rd '((g) (e tofu))))
+
+; 3-34
+(run* z
+        (loso `((g) . ,z)))
+
+; 3-48
+(run* q
+      (membero 'olive '(virgin olive oil)))
+
+; 3-53
+(run* y
+        (membero y '(hummuns with pita)))
+
+; 3-55
+(run* y
+        (membero y '(pear grape . peached)))
+
+; 3-56
+(run* x
+        (membero 'e `(pasta ,x fagioli)))
+
+; 3-63
+(run* q
+        (fresh (x y)
+               (== `(pasta ,x fagioli ,y) q)
+               (membero 'e q)))
+
+; 3-37
+(run* q
+        (proper-membero q '(a b c)))

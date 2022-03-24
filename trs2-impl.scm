@@ -277,3 +277,81 @@
   (fresh (d)
          (cdro l d)
          (nullo d)))
+
+;;; Here are the simple difinitions of chapter 3
+
+(define (mylist? l)
+  (cond
+    ((null? l) #t)
+    ((pair? l) (list? (cdr l)))
+    (#t #f)))
+
+(defrel (listo l)
+  (conde
+   ((nullo l) succeed)
+   ((pairo l)
+    (fresh (d)
+           (cdro l d)
+           (listo d)))
+   (succeed fail)))
+
+(defrel (listo-2nd l)
+  (conde
+   ((nullo l))
+   ((fresh (d)
+           (cdro l d)
+           (listo d)))))
+
+(define (lol? l)
+  (cond
+    ((null? l) #t)
+    ((list? (car l))
+     (lol? (cdr l)))
+    (#t #f)))
+
+(defrel (lolo l)
+  (conde
+   ((nullo l))
+   ((fresh (a)
+           (caro l a)
+           (listo a))
+    (fresh(d)
+          (cdro l d)
+          (lolo d)))))
+
+(defrel (singletono-3rd l)
+  (fresh (a)
+         (== `(,a) l)))
+
+(defrel (loso l)
+  (conde
+   ((nullo l))
+   ((fresh (a)
+           (caro l a)
+           (singletono a))
+    (fresh (d)
+           (cdro l d)
+           (loso d)))))
+
+(define (member? x l)
+  (cond
+    ((null? l) #f)
+    ((equal? (car l) x) #t)
+    (#t (member? x (cdr l)))))
+
+(defrel (membero x l)
+  (conde
+   ((caro l x))
+   ((fresh (d)
+           (cdro l d)
+           (membero x d)))))
+
+(defrel (proper-membero x l)
+  (conde
+   ((caro l x)
+    (fresh (d)
+           (cdro l d)
+           (listo d)))
+   ((fresh (d)
+           (cdro l d)
+           (proper-membero x d)))))
