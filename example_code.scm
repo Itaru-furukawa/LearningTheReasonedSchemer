@@ -197,3 +197,38 @@
 ; 3-37
 (run* q
         (proper-membero q '(a b c)))
+
+; 4-17
+(run 6 x
+       (fresh (y z)
+              (appendo x y z)))
+; 4-21
+(run* x
+        (appendo '(cake) '(tastes yummy) x))
+
+; 4-22
+(run* x
+        (appendo '(cake) '(tastes yummy) x))
+
+; 4-39
+(run 7 (x y)
+       (appendo x y '(cake & ice d t)))
+
+; 4-39
+(run 7 (x y)
+       (appendo2 x y '(cake & ice d t)))
+
+; 4-44
+(run* (x y)
+        (swappendo x y '(cake & ice d t)))
+
+; 4-45
+(unwrap '(((pizza))))
+
+; 4-48
+(run* x
+        (unwrapo '(((pizza))) x))
+
+; 4-52
+(run 5 x
+       (unwrapo x 'pizza))

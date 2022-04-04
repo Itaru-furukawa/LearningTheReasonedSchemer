@@ -17,6 +17,10 @@
 
 ;;; Here are the key parts of Chapter 10
 
+(define sub1
+  (lambda (n)
+    (- n 1)))
+
 (define var (lambda (x) (vector x)))
 (define var? (lambda (x) (vector? x)))
 
@@ -355,3 +359,47 @@
    ((fresh (d)
            (cdro l d)
            (proper-membero x d)))))
+
+;;; Here are the simple difinitions of chapter 4
+
+(define (append2 l t)
+  (cond
+    ((null? l) t)
+    (#t (cons (car l)
+              (append2 (cdr l) t)))))
+
+(defrel (appendo l t out)
+  (conde
+   ((nullo l) (== t out))
+   ((fresh (a d res)
+           (conso a d l)
+           (appendo d t res)
+           (conso a res out)))))
+
+(defrel (appendo2 l t out)
+  (conde
+   ((nullo l) (== t out))
+   ((fresh (a d res)
+           (conso a d l)
+           (conso a res out)
+           (appendo d t res)))))
+
+(defrel (swappendo l t out)
+  (conde
+   ((fresh (a d res)
+           (conso a d l)
+           (conso a res out)
+           (swappendo d t res)))
+   ((nullo l) (== t out))))
+
+(define (unwrap x)
+  (cond
+    ((pair? x) (unwrap (car x)))
+    (#t x)))
+
+(defrel (unwrapo x out)
+  (conde
+   ((fresh (a)
+           (caro x a)
+           (unwrapo a out)))
+   ((== x out))))
