@@ -232,3 +232,39 @@
 ; 4-52
 (run 5 x
        (unwrapo x 'pizza))
+
+; 5-5
+(run* q
+        (memo 'fig '(pea) '(pea)))
+
+; 5-7
+(run* out
+        (memo 'fig '(fig) out))
+
+; 5-10
+(run* x
+        (memo 'fig '(fig pea) `(,x pea)))
+
+; 5-14
+(run* out
+        (memo 'fig '(fig fig pea) out))
+
+; 5-18
+(run* out
+        (fresh (x)
+               (memo 'fig `(a ,x c fig e) out)))
+
+; 5-24
+(rember 'pea '(a b pea d pea e))
+
+; 5-27
+(run* out
+        (rembero 'pea '(pea) out))
+
+; 5-28
+(run* out
+        (fresh (y z)
+               (rembero y `(a b ,y d ,z e) out)))
+; 5-56
+(run 4 (y z w out)
+      (rembero y `(,z . ,w) out))
