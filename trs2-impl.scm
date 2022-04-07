@@ -434,3 +434,12 @@
            (conso a res out)
            (rembero x d res)))))
 
+;;; Here are the simple difinitions of chapter 6
+
+(defrel (alwayso)
+  (conde
+   (succeed)
+   ((alwayso))))
+
+(defrel (nevero)
+  (nevero))

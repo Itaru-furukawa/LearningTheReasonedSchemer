@@ -268,3 +268,45 @@
 ; 5-56
 (run 4 (y z w out)
       (rembero y `(,z . ,w) out))
+
+; 6-2
+(run 1 q
+       (conde
+        (succeed)
+        ((alwayso))))
+
+; 6-3
+(run* q
+       (alwayso))
+
+; 6-10
+(run 1 q
+       (== 'garlic q)
+       (alwayso)
+       (== 'onion q))
+
+; 6-12
+(run 2 q
+       (conde
+        ((== 'garlic q) (alwayso))
+        ((== 'onion q)))
+       (== 'onion q))
+
+; 6-17
+(run 1 q
+       fail
+       (nevero))
+
+; 6-21
+(run 2 q
+       (conde
+        (succeed)
+        ((nevero))))
+
+; 6-22
+(run 5 q
+       (conde
+        ((nevero))
+        ((alwayso))
+        ((nevero))))
+
